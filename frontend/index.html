@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Crop Monitoring - Solvathon 2K26</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>🌱 AI Crop Monitoring</h1>
+    <p>Real-time health, soil, and weather insights</p>
+
+    <div class="controls">
+        <div id="imagePreviewContainer" style="display:none; margin-right: 15px;">
+            <img id="preview" src="" style="height: 50px; border-radius: 8px; border: 2px solid #10b981; object-fit: cover;">
+        </div>
+        <input type="file" id="imageInput" onchange="previewImage()" accept="image/*">
+        
+        <div class="location-group">
+            <input type="text" id="locationInput" placeholder="City or Lat, Lon">
+            <button type="button" id="gpsBtn" class="gps-btn" onclick="getGPSLocation()" title="Use Exact GPS Location">📍</button>
+        </div>
+
+        <button id="analyzeBtn" onclick="submitData()">Analyze Crop</button>
+    </div>
+
+    <div class="dashboard-cards">
+        <div class="card" id="healthCard">
+            <div class="card-header">🌿 Health Status</div>
+            <div class="card-body" style="font-size: 0.9em; color: #64748b;">Upload image to begin</div>
+        </div>
+
+        <div class="card" id="soilCard">
+            <div class="card-header">
+                🌱 Soil Score <span class="pulse-dot"></span>
+            </div>
+            <div class="card-body" style="font-size: 0.9em; color: #64748b;">-- / 100</div>
+        </div>
+
+        <div class="card" id="pestCard">
+            <div class="card-header">🐛 Pest Risk</div>
+            <div class="card-body" style="font-size: 0.9em; color: #64748b;">Waiting for location...</div>
+        </div>
+    </div>
+
+    <div class="chart-container" id="actionPlanContainer">
+        <h3 style="margin-bottom: 15px; color: #1e293b;">📋 Recommended Action Plan</h3>
+        <div id="actionContent" style="padding: 15px; font-weight: 500; color: #64748b; background: #f8fafc; border-radius: 10px; border: 1px dashed #cbd5e1;">
+            Awaiting analysis to generate localized recommendations.
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h3>Soil Nutrient Breakdown (NPK)</h3>
+        <div id="chartPlaceholder" style="color: #94a3b8; padding: 40px 0; font-size: 0.9em;">
+            Charts will generate after analysis
+        </div>
+        <canvas id="npkChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
